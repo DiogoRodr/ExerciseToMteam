@@ -16,7 +16,7 @@ class FlickrApiRequestService(private val req: IRequest) {
         /*host request parameters*/
         private const val flickrApiHost: String = "https://www.flickr.com/services/rest/?"
         private const val format: String = "format=json&nojsoncallback=1"
-        private var B64SMTH : String = "YXBpX2tleT0xNjUyOGY4OTZkMDk0OWYwNGEzYmE1ZGEyYzk0MDRmZA=="
+        private var B64SMTH : String = "YXBpX2tleT0xNjUyOGY4OTZkMDk0OWYwNGEzYmE1ZGEyYzk0MDRmZA=="//proguard saved
         private const val method_find_by_username : String = "method=flickr.people.findByUsername"
         private const val method_get_public_photos : String = "method=flickr.people.getPublicPhotos"
         private const val method_get_photo_sizes  : String =  "method=flickr.photos.getSizes"

@@ -74,7 +74,7 @@ class HttpRequests(ctx: Context) : IRequest {
         }
 
         override fun putBitmap(url: String?, bitmap: Bitmap?) {
-            cache.put(url!!, bitmap!!)
+            cache[url!!] = bitmap!!
         }
     }
 }

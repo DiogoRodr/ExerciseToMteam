@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.photos_grid_list.*
 
 class PhotosListActivity : AppCompatActivity() {
     private lateinit var adapter : PhotoListAdapter
-    private var currentPage: Int = 0
+    private var currentPage: Int = 1
     private var totalNumberOfPages = 0
     private var queriedUserId: String? = null
     private var queriedUserName: String? = null
@@ -31,13 +31,11 @@ class PhotosListActivity : AppCompatActivity() {
         nextPageButton.setOnClickListener {
             currentPage++
             getNewPublicPhotosList()
-            recreate()
         }
 
         previousPageButton.setOnClickListener {
             currentPage--
             getNewPublicPhotosList()
-            recreate()
         }
     }
 
@@ -69,9 +67,8 @@ class PhotosListActivity : AppCompatActivity() {
         textView.setText(String.format("User: %s photos",queriedUserName))
         adapter = PhotoListAdapter(applicationContext, R.layout.photos_grid_item, photoList.photo)
         list_gridView.adapter = adapter
-        adapter.notifyDataSetChanged()
 
-        if(currentPage == 0)
+        if(currentPage == 1)
             previousPageButton.visibility = INVISIBLE
         else
             previousPageButton.visibility = VISIBLE
