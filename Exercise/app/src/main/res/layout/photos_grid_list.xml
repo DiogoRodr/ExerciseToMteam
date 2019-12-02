@@ -8,20 +8,19 @@
     tools:context=".View.PhotosListActivity">
 
     <GridView
-        android:id="@+id/gridView"
-        android:layout_width="394dp"
-        android:layout_height="542dp"
-        android:layout_marginTop="88dp"
-        android:orientation="vertical"
+        android:id="@+id/list_gridView"
+        android:layout_width="384dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/lini" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="366dp"
-        android:layout_height="59dp"
+        android:layout_width="367dp"
+        android:layout_height="30dp"
         android:layout_marginTop="16dp"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,27 +28,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/nextPageButton"
-        android:layout_width="145dp"
-        android:layout_height="54dp"
-        android:layout_marginEnd="32dp"
-        android:text="Next Page"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <LinearLayout
+        android:id="@+id/lini"
+        android:layout_width="382dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="12dp"
+        android:background="@android:color/transparent"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridView"
-        app:layout_constraintVertical_bias="0.434" />
-
-    <Button
-        android:id="@+id/previousPageButton"
-        android:layout_width="145dp"
-        android:layout_height="54dp"
-        android:text="Previous Page"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/nextPageButton"
-        app:layout_constraintHorizontal_bias="0.471"
+        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridView"
-        app:layout_constraintVertical_bias="0.434" />
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <Button
+            android:id="@+id/previousPageButton"
+            android:layout_width="145dp"
+            android:layout_height="54dp"
+            android:layout_marginLeft="32dp"
+            android:text="Previous Page" />
+
+        <Button
+            android:id="@+id/nextPageButton"
+            android:layout_width="145dp"
+            android:layout_height="54dp"
+            android:layout_marginLeft="32dp"
+            android:text="Next Page" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

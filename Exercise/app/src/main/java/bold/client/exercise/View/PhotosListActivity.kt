@@ -30,33 +30,24 @@ class PhotosListActivity : AppCompatActivity() {
         //button
         nextPageButton.setOnClickListener {
             currentPage++
+            getNewPublicPhotosList()
             recreate()
         }
 
         previousPageButton.setOnClickListener {
             currentPage--
+            getNewPublicPhotosList()
             recreate()
         }
     }
 
     override fun onStart() {
         super.onStart()
-        if(currentPage == 0)
-            previousPageButton.visibility = INVISIBLE
-        else
-            previousPageButton.visibility = VISIBLE
-
-        if(currentPage == totalNumberOfPages)
-            nextPageButton.visibility = INVISIBLE
-        else
-            nextPageButton.visibility = VISIBLE
-
         if(currentPhotoList == null)
             getNewPublicPhotosList()
         else
             populateActivity(currentPhotoList!!)
     }
-
 
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         super.onSaveInstanceState(savedInstanceState)
@@ -76,8 +67,19 @@ class PhotosListActivity : AppCompatActivity() {
 
     private fun populateActivity( photoList: Photos) {
         textView.setText(String.format("User: %s photos",queriedUserName))
-        adapter = PhotoListAdapter(applicationContext, R.layout.photos_grid_list, photoList.photo)
-        gridView.adapter = adapter
+        adapter = PhotoListAdapter(applicationContext, R.layout.photos_grid_item, photoList.photo)
+        list_gridView.adapter = adapter
+        adapter.notifyDataSetChanged()
+
+        if(currentPage == 0)
+            previousPageButton.visibility = INVISIBLE
+        else
+            previousPageButton.visibility = VISIBLE
+
+        if(currentPage == totalNumberOfPages)
+            nextPageButton.visibility = INVISIBLE
+        else
+            nextPageButton.visibility = VISIBLE
     }
 
     private fun getNewPublicPhotosList(){
