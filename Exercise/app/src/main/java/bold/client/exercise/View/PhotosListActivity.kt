@@ -1,6 +1,7 @@
 package bold.client.exercise.View
 
 import android.os.Bundle
+import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
@@ -47,6 +48,18 @@ class PhotosListActivity : AppCompatActivity() {
             populateActivity(currentPhotoList!!)
     }
 
+    override fun onPause() {
+        super.onPause()
+        val view : View = findViewById(android.R.id.content)
+        view.rootView.visibility = INVISIBLE
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val view : View = findViewById(android.R.id.content)
+        view.rootView.visibility = VISIBLE
+    }
+
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         super.onSaveInstanceState(savedInstanceState)
         savedInstanceState.putInt("currentPage", currentPage)
@@ -65,7 +78,7 @@ class PhotosListActivity : AppCompatActivity() {
 
     private fun populateActivity( photoList: Photos) {
         textView.setText(String.format("User: %s photos",queriedUserName))
-        adapter = PhotoListAdapter(applicationContext, R.layout.photos_grid_item, photoList.photo)
+        adapter = PhotoListAdapter(baseContext, R.layout.photos_grid_item, photoList.photo)
         list_gridView.adapter = adapter
 
         if(currentPage == 1)
