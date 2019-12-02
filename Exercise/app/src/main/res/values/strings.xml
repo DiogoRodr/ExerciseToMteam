@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">MEZU Exercise</string>
+    <string name="error">Error! Unable to proceed with the request</string>
+
+    <!-- FLIRK API -->
+    <string name="FLICKR_API_REST_URL">https://api.flickr.com/services/rest/?</string>
+    <string name="format">format=json</string>
+    <string name="noJsonCallback">nojsoncallback=1</string>
+    <string name="api_key">api_key=16528f896d0949f04a3ba5da2c9404fd</string>
+    <string name="method_find_by_username">method=flickr.people.findByUsername</string>
+    <string name="method_get_public_photos">method=flickr.people.getPublicPhotos</string>
+    <string name="method_get_info">method=flickr.people.getInfo</string>
+    <string name="method_get_photo_sizes">method=flickr.photos.getSizes</string>
+
+    <string name="cancel">Cancel</string>
+    <string name="retry">Retry</string>
+
+</resources>
