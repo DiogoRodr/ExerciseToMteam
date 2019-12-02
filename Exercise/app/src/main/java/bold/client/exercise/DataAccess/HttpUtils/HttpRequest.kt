@@ -12,6 +12,7 @@ import com.android.volley.toolbox.NetworkImageView
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
+import org.json.JSONObject
 
 class HttpRequests(ctx: Context) : IRequest {
     private val requestQueue: RequestQueue = Volley.newRequestQueue(ctx)
@@ -21,24 +22,30 @@ class HttpRequests(ctx: Context) : IRequest {
         TempCache()
     )
 
-    override fun get(url: String, tag: Any?, callback: (err: String?, resp: String?) -> Unit) {
+    override fun get(url: String, tag: Any?, callback: (httpError: String?, flickrError: Error?,  resp: String?) -> Unit) {
         requestQueue.add(StringRequest(
             Request.Method.GET,
             url,
-            Response.Listener<String> { response -> callback(null, response) },
+            Response.Listener<String> { response ->
+                //since flickr is not restfull, we must check for errors in a ugly way :(
+                val jsonResponse:JSONObject = JSONObject(response)
+                if(jsonResponse.has("stat") && jsonResponse.has("code") && jsonResponse.has("message")) {
+                    val flickrError: Error = Gson().fromJson(jsonResponse.toString(), Error::class.java)
+                    callback(null, flickrError, null)
+                }
+                else callback(null, null, response)
+             },
             Response.ErrorListener { error ->
                 if (error is TimeoutError || error is NoConnectionError)
                     callback(
                         MyApplication.appContext.getString(R.string.error),
+                        null,
                         null
                     )
                 else {
-                    val dto = Gson().fromJson(
-                        String(error.networkResponse.data),
-                        Error::class.java
-                    )
                     callback(
-                        "Error Code: " + dto.code + "\n\t" + dto.message,
+                        "HTTP Error Code: " + error.networkResponse.statusCode ,
+                         null,
                         null
                     )
                 }

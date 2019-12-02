@@ -1,16 +1,14 @@
 package bold.client.exercise.View
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import bold.client.exercise.DataTransferObjects.Photos
-import bold.client.exercise.MyApplication
 import bold.client.exercise.MyApplication.Companion.photoService
 import bold.client.exercise.R
 import bold.client.exercise.View.adapters.PhotoListAdapter
+import bold.client.exercise.View.errorHandlingUtils.ErrorHandling.Companion.errorDialog
 import kotlinx.android.synthetic.main.photos_grid_list.*
 
 class PhotosListActivity : AppCompatActivity() {
@@ -27,7 +25,7 @@ class PhotosListActivity : AppCompatActivity() {
 
         val bundleFromParent: Bundle? = intent.extras
         queriedUserId = bundleFromParent!!.getString("userId")
-        queriedUserName = bundleFromParent!!.getString("username")
+        queriedUserName = bundleFromParent.getString("username")
 
         //button
         nextPageButton.setOnClickListener {
@@ -82,19 +80,12 @@ class PhotosListActivity : AppCompatActivity() {
         gridView.adapter = adapter
     }
 
-    private fun errorDialog(err: String, activity: Activity){
-        val builder = AlertDialog.Builder(activity)
-        builder.setMessage(err)
-        builder.setNegativeButton(MyApplication.appContext?.getString(R.string.cancel)) { _, _ -> activity.finish() }
-        //builder.setPositiveButton(MyApplication.appContext?.getString(R.string.retry)) { _, _ -> activity.recreate() }
-        builder.setCancelable(false)
-        builder.show()
-    }
-
     private fun getNewPublicPhotosList(){
-        photoService.findPublicPhotos(queriedUserId!!, currentPage.toString()) { err, photoList ->
-            if (err != null)
-                errorDialog(err, this)
+        photoService.findPublicPhotos(queriedUserId!!, currentPage.toString()) { httpError, flickrError, photoList ->
+            if (httpError != null)
+                errorDialog(httpError,this)
+            else if(flickrError != null)
+                errorDialog(flickrError.message,this)
             else {
                 currentPhotoList = photoList
                 totalNumberOfPages = photoList!!.pages

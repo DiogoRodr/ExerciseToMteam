@@ -44,8 +44,8 @@ class PhotoListAdapter(
         //Request Image
         val photoId = photoList!![position].id
         if(photoId != null)
-           photoService.findPhotoSizes(photoId) { err, photoSizes ->
-               if(err!=null)
+           photoService.findPhotoSizes(photoId) { httpError,flickrError, photoSizes ->
+               if(httpError!=null || flickrError!= null)
                    holder.poster.setImageUrl(null,null)
                else
                    flickrApi.getPhoto( photoSizes!!.sizes.size[0].source, holder.poster, true)

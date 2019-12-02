@@ -4,9 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SearchView
-import android.widget.Toast
 import bold.client.exercise.MyApplication.Companion.userService
 import bold.client.exercise.R
+import bold.client.exercise.View.errorHandlingUtils.ErrorHandling.Companion.errorDialog
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -18,13 +18,15 @@ class MainActivity : AppCompatActivity() {
             override fun onQueryTextChange(p0: String?): Boolean = false
 
             override fun onQueryTextSubmit(query: String): Boolean {
-                userService.findUserByUsername(query) { err, userInfo ->
-                    if (err != null)
-                        Toast.makeText(applicationContext, err, Toast.LENGTH_SHORT)
+                userService.findUserByUsername(query) { httpError, flickrError, userInfo ->
+                    if (httpError != null)
+                        errorDialog(httpError,this@MainActivity)
+                    else if(flickrError != null)
+                        errorDialog(flickrError.message,this@MainActivity)
                     else {
                         val mIntent = Intent(this@MainActivity, PhotosListActivity::class.java)
                         mIntent.putExtra("userId", userInfo!!.user.id)
-                        mIntent.putExtra("username", userInfo!!.user.username._content)
+                        mIntent.putExtra("username", userInfo.user.username._content)
                         startActivity(mIntent)
                     }
                 }
