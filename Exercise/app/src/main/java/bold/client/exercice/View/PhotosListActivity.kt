@@ -86,7 +86,7 @@ class PhotosListActivity : AppCompatActivity() {
         else
             previousPageButton.visibility = VISIBLE
 
-        if(currentPage == totalNumberOfPages)
+        if(currentPage == totalNumberOfPages || totalNumberOfPages ==0)
             nextPageButton.visibility = INVISIBLE
         else
             nextPageButton.visibility = VISIBLE
