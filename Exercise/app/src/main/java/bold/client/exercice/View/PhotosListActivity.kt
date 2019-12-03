@@ -63,9 +63,9 @@ class PhotosListActivity : AppCompatActivity() {
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         super.onSaveInstanceState(savedInstanceState)
         savedInstanceState.putInt("currentPage", currentPage)
+        savedInstanceState.putInt("totalPages", totalNumberOfPages)
         savedInstanceState.putString("queriedUserId", queriedUserId)
         savedInstanceState.putString("queriedUserName", queriedUserName)
-        savedInstanceState.putInt("currentPages", totalNumberOfPages)
     }
 
     override fun onRestoreInstanceState(restoreInstanceState: Bundle) {
