@@ -10,8 +10,7 @@ class ErrorHandling {
         fun errorDialog(err: String, activity: Activity) {
             val builder = AlertDialog.Builder(activity)
             builder.setMessage(err)
-            builder.setNegativeButton(MyApplication.appContext.getString(R.string.cancel)) { _, _ -> activity.finish()}
-            //builder.setPositiveButton(MyApplication.appContext?.getString(R.string.retry)) { _, _ -> activity.recreate() }
+            builder.setNegativeButton(MyApplication.appContext.getString(R.string.retry)) { _, _ -> }
             builder.setCancelable(false)
             builder.show()
         }

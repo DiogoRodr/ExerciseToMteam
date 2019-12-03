@@ -52,7 +52,6 @@ class PhotoListAdapter(
 
         holder.photoTitle.text = photoList[position].title
 
-
         return row!!
     }
 
