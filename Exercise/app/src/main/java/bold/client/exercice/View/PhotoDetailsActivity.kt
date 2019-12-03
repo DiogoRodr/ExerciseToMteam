@@ -54,9 +54,10 @@ class PhotoDetailsActivity : AppCompatActivity(){
                     flickrError.message,
                     this
                 )
-            else
-                flickrApi.getPhoto(photoSizes!!.sizes.size[5].source, image, true)
-
+            else {
+                var arraySize: Int = photoSizes!!.sizes.size.size - 1
+                flickrApi.getPhoto(photoSizes!!.sizes.size[arraySize].source, image, true)
+            }
             photo_detail_title.setText(photo_title)
         }
     }
