@@ -44,20 +44,9 @@ class PhotosListActivity : AppCompatActivity() {
         super.onStart()
         if(currentPhotoList == null)
             getNewPublicPhotosList()
-        else
+        else {
             populateActivity(currentPhotoList!!)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        val view : View = findViewById(android.R.id.content)
-        view.visibility = INVISIBLE
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val view : View = findViewById(android.R.id.content)
-        view.rootView.visibility = VISIBLE
+        }
     }
 
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
