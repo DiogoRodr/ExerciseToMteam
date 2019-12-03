@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name="bold.client.exercice.View.PhotosListActivity"/>
+        <activity android:name="bold.client.exercice.View.PhotoDetailsActivity"/>
 
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
