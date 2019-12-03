@@ -1,4 +1,4 @@
-package bold.client.exercise.DataTransferObjects.PhotoSizes
+package bold.client.exercice.DataTransferObjects.PhotoSizes
 
 data class PhotoSizes (
     val sizes : Sizes,

@@ -1,18 +1,15 @@
-package bold.client.exercise.View.adapters
+package bold.client.exercice.View.adapters
 
-import android.app.Activity
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import bold.client.exercise.DataTransferObjects.Photo
-import bold.client.exercise.DataTransferObjects.PhotoListing
-import bold.client.exercise.MyApplication.Companion.flickrApi
-import bold.client.exercise.MyApplication.Companion.photoService
-import bold.client.exercise.R
+import bold.client.exercice.DataTransferObjects.Photo
+import bold.client.exercice.MyApplication.Companion.flickrApi
+import bold.client.exercice.MyApplication.Companion.photoService
+import bold.client.exercice.R
 import com.android.volley.toolbox.NetworkImageView
 
 class PhotoListAdapter(
@@ -22,12 +19,13 @@ class PhotoListAdapter(
 ) :  ArrayAdapter<Photo>(context, resource, photoList) {
 
     override fun getCount(): Int {
+        super.getCount()
         return photoList.size
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val holder: ViewHolder
 
+        val holder: ViewHolder
         var row = convertView
         if (row == null) {
             val inflater = LayoutInflater.from(context)
@@ -40,20 +38,20 @@ class PhotoListAdapter(
             row.tag = holder
         } else
             holder = row.tag as ViewHolder
-
         //Request Image
         val photoId = photoList!![position].id
-        if(photoId != null)
-           photoService.findPhotoSizes(photoId) { httpError,flickrError, photoSizes ->
-               if(httpError!=null || flickrError!= null)
-                   holder.poster.setImageUrl(null,null)
-               else
-                   flickrApi.getPhoto( photoSizes!!.sizes.size[0].source, holder.poster, true)
-           }
+        if (photoId != null)
+            photoService.findPhotoSizes(photoId) { httpError, flickrError, photoSizes ->
+                if (httpError != null || flickrError != null)
+                    holder.poster.setImageUrl(null, null)
+                else
+                    flickrApi.getPhoto(photoSizes!!.sizes.size[1].source, holder.poster, true)
+            }
         else
             holder.poster.setImageUrl(null, null)       //Remove image from NetworkImageView
 
         holder.photoTitle.text = photoList[position].title
+
 
         return row!!
     }

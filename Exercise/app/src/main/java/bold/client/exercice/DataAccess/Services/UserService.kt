@@ -1,10 +1,10 @@
-package bold.client.exercise.DataAccess.Services
+package bold.client.exercice.DataAccess.Services
 
-import bold.client.exercise.DataAccess.FlickrApiRequestService
-import bold.client.exercise.DataTransferObjects.UserInfo
-import bold.client.exercise.MyApplication
+import bold.client.exercice.DataAccess.FlickrApiRequestService
+import bold.client.exercice.DataTransferObjects.UserInfo
+import bold.client.exercice.MyApplication
 import com.google.gson.Gson
-import bold.client.exercise.DataTransferObjects.Error
+import bold.client.exercice.DataTransferObjects.Error
 
 class UserService {
     private val flickrApi: FlickrApiRequestService = MyApplication.flickrApi

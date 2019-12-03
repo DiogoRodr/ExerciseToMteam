@@ -1,8 +1,8 @@
-package bold.client.exercise.DataAccess
+package bold.client.exercice.DataAccess
 
 import android.util.Base64
-import bold.client.exercise.DataAccess.HttpUtils.IRequest
-import bold.client.exercise.DataTransferObjects.Error
+import bold.client.exercice.DataAccess.HttpUtils.IRequest
+import bold.client.exercice.DataTransferObjects.Error
 import com.android.volley.toolbox.NetworkImageView
 
 class FlickrApiRequestService(private val req: IRequest) {

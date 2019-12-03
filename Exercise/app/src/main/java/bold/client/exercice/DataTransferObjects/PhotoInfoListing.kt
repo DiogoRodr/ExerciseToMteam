@@ -1,4 +1,4 @@
-package bold.client.exercise.DataTransferObjects
+package bold.client.exercice.DataTransferObjects
 
 
 data class PhotoListing(

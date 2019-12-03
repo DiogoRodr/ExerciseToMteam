@@ -1,11 +1,10 @@
-package bold.client.exercise.DataAccess.HttpUtils;
+package bold.client.exercice.DataAccess.HttpUtils;
 
-import bold.client.exercise.MyApplication.Companion.imageCache
 import android.content.Context
 import android.graphics.Bitmap
-import bold.client.exercise.MyApplication
-import bold.client.exercise.R
-import bold.client.exercise.DataTransferObjects.Error
+import bold.client.exercice.MyApplication
+import bold.client.exercice.R
+import bold.client.exercice.DataTransferObjects.Error
 import com.android.volley.*
 import com.android.volley.toolbox.ImageLoader
 import com.android.volley.toolbox.NetworkImageView
@@ -13,13 +12,14 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import org.json.JSONObject
+import java.util.concurrent.ConcurrentHashMap
 
 class HttpRequests(ctx: Context) : IRequest {
     private val requestQueue: RequestQueue = Volley.newRequestQueue(ctx)
-    private val mImageLoaderWithCache = ImageLoader(requestQueue, imageCache)
+    private val mImageLoaderWithCache = ImageLoader(requestQueue, TempCache())
     private val mImageLoaderWithoutCache = ImageLoader(
         requestQueue,
-        TempCache()
+        null
     )
 
     override fun get(url: String, tag: Any?, callback: (httpError: String?, flickrError: Error?,  resp: String?) -> Unit) {
@@ -69,7 +69,6 @@ class HttpRequests(ctx: Context) : IRequest {
         private val cache: HashMap<String, Bitmap> = HashMap()
 
         override fun getBitmap(url: String?): Bitmap? {
-            System.out.println("Getting cached image")
             return cache[url]
         }
 

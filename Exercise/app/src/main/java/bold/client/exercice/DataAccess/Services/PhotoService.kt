@@ -1,12 +1,12 @@
-package bold.client.exercise.DataAccess.Services
+package bold.client.exercice.DataAccess.Services
 
-import bold.client.exercise.DataAccess.FlickrApiRequestService
-import bold.client.exercise.DataTransferObjects.PhotoListing
-import bold.client.exercise.DataTransferObjects.PhotoSizes.PhotoSizes
-import bold.client.exercise.DataTransferObjects.Photos
-import bold.client.exercise.MyApplication.Companion.flickrApi
+import bold.client.exercice.DataAccess.FlickrApiRequestService
+import bold.client.exercice.DataTransferObjects.PhotoListing
+import bold.client.exercice.DataTransferObjects.PhotoSizes.PhotoSizes
+import bold.client.exercice.DataTransferObjects.Photos
+import bold.client.exercice.MyApplication.Companion.flickrApi
 import com.google.gson.Gson
-import bold.client.exercise.DataTransferObjects.Error
+import bold.client.exercice.DataTransferObjects.Error
 
 class PhotoService{
 

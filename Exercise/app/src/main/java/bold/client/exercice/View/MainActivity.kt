@@ -1,12 +1,12 @@
-package bold.client.exercise.View
+package bold.client.exercice.View
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SearchView
-import bold.client.exercise.MyApplication.Companion.userService
-import bold.client.exercise.R
-import bold.client.exercise.View.errorHandlingUtils.ErrorHandling.Companion.errorDialog
+import bold.client.exercice.MyApplication.Companion.userService
+import bold.client.exercice.R
+import bold.client.exercice.View.errorHandlingUtils.ErrorHandling.Companion.errorDialog
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

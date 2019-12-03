@@ -1,7 +1,7 @@
-package bold.client.exercise.DataAccess.HttpUtils;
+package bold.client.exercice.DataAccess.HttpUtils;
 
 
-import bold.client.exercise.DataTransferObjects.Error
+import bold.client.exercice.DataTransferObjects.Error
 import com.android.volley.toolbox.NetworkImageView
 
 

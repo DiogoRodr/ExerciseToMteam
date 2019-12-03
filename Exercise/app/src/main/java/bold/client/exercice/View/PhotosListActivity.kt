@@ -1,15 +1,15 @@
-package bold.client.exercise.View
+package bold.client.exercice.View
 
 import android.os.Bundle
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
-import bold.client.exercise.DataTransferObjects.Photos
-import bold.client.exercise.MyApplication.Companion.photoService
-import bold.client.exercise.R
-import bold.client.exercise.View.adapters.PhotoListAdapter
-import bold.client.exercise.View.errorHandlingUtils.ErrorHandling.Companion.errorDialog
+import bold.client.exercice.DataTransferObjects.Photos
+import bold.client.exercice.MyApplication.Companion.photoService
+import bold.client.exercice.R
+import bold.client.exercice.View.adapters.PhotoListAdapter
+import bold.client.exercice.View.errorHandlingUtils.ErrorHandling.Companion.errorDialog
 import kotlinx.android.synthetic.main.photos_grid_list.*
 
 class PhotosListActivity : AppCompatActivity() {
@@ -51,7 +51,7 @@ class PhotosListActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         val view : View = findViewById(android.R.id.content)
-        view.rootView.visibility = INVISIBLE
+        view.visibility = INVISIBLE
     }
 
     override fun onResume() {
@@ -77,8 +77,8 @@ class PhotosListActivity : AppCompatActivity() {
     }
 
     private fun populateActivity( photoList: Photos) {
-        textView.setText(String.format("User: %s photos",queriedUserName))
-        adapter = PhotoListAdapter(baseContext, R.layout.photos_grid_item, photoList.photo)
+        textView.setText(String.format("User: %s photos| page:%s of %s",queriedUserName,currentPage, totalNumberOfPages))
+        adapter = PhotoListAdapter(applicationContext, R.layout.photos_grid_item, photoList.photo)
         list_gridView.adapter = adapter
 
         if(currentPage == 1)
